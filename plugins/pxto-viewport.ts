@@ -4,7 +4,7 @@ const defaultOptions = {
   viewPortWidth: 375,
   mediaQuery: false,
   unitToConvert: "px",
-  include: ["src/views/PxToViewport"], // 默认不限制路径
+  include: [], // 默认不限制路径
 };
 export const pxToViewport = (options: Options = defaultOptions): Plugin => {
   const opt = Object.assign({}, defaultOptions, options);
@@ -25,8 +25,9 @@ export const pxToViewport = (options: Options = defaultOptions): Plugin => {
           : pattern?.test(filePath);
       });
 
-      // console.log("filePath", isInclude);
-      if (!isInclude) return;
+      console.log("filePath", opt.include.length > 0 && !isInclude);
+      // 未配置 include 或路径不匹配时跳过
+      if (opt.include.length > 0 && !isInclude) return;
 
       //匹配到px 转换成vw
       if (value.includes(opt.unitToConvert)) {
