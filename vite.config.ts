@@ -14,7 +14,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [pxToViewport()],
+      plugins: [pxToViewport({ include: ["src/views/PxToViewport"] })],
     },
   },
 });
