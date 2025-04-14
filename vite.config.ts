@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
+import { pxToViewport } from "./plugins/pxto-viewport";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -9,6 +10,11 @@ export default defineConfig({
     // Vite路径别名配置
     alias: {
       "@": path.resolve("./src"),
+    },
+  },
+  css: {
+    postcss: {
+      plugins: [pxToViewport()],
     },
   },
 });
